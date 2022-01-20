@@ -14,7 +14,7 @@ const api = 'http://ec2-13-209-99-205.ap-northeast-2.compute.amazonaws.com:8080'
 // };
 
 export const getTest = async () => {
-  const res = await axios.post(api + '/')
+  const res = await axios.get(api + '/')
 
   return res.data
 }
