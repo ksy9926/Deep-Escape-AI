@@ -1,7 +1,16 @@
-import React from 'react';
-import { postTest } from 'apis/api';
+import React, { useEffect, useState } from 'react';
+import { getTest, postTest } from 'apis/api';
 
 const MainPage = () => {
+  useEffect(() => {
+    async function fetchData() {
+      const res = await getTest();
+      console.log('res: ', res);
+      return res;
+    }
+    fetchData();
+  }, []);
+
   const postHandler = () => {
     postTest('제목 테스트');
   };

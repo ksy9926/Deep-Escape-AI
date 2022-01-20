@@ -20,6 +20,9 @@ export class MainServer {
 		this.app.use(express.json());
 		this.app.use(cors()); //cors를 allow한다.
 		this.app.use("/test", testRouter);
+    this.app.get('/', (req: Request, res: Response) => {
+      res.send('Hello World');
+    });
 
 		this.app.listen(8080, () => {
 			console.log('Server Opened.');

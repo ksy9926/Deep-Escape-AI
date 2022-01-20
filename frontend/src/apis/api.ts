@@ -13,6 +13,12 @@ const api = 'http://ec2-13-209-99-205.ap-northeast-2.compute.amazonaws.com:8080'
 //   return res.data
 // };
 
+export const getTest = async () => {
+  const res = await axios.post(api + '/')
+
+  return res.data
+}
+
 // 등록 api
 export const postTest = async (title: string) => {
   const res = await axios.post(api + '/test/post', {
