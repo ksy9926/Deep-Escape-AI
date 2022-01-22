@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
 import { getTest, postTest } from 'apis/api';
 import { getModelList, findProject } from 'apis/studio';
-import 'assets/test.mp4';
 import { MainWrap, MainBanner } from 'styles/mainStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateClientTokenAsync, makeVideoAsync } from 'redux/actions/studioAction';
 import { RootState } from 'redux/reducers';
+import Introduction from 'components/MainPage/Introduction';
 
 const MainPage = () => {
   const dispatch = useDispatch();
+  const [text, setText] = useState('');
   const { appId, clientHostname, token, uuid, videoKey } = useSelector(
     (state: RootState) => state.studio,
   );
-
-  console.log('token: ', token);
-  console.log('videoKey: ', videoKey);
 
   useEffect(() => {
     async function fetchData() {
@@ -32,59 +30,42 @@ const MainPage = () => {
   return (
     <MainWrap>
       <MainBanner>
-        <video src="assets/test.mp4" />
-        MainPage
+        {/* <video src="test.mp4" width="100%" height="100%" /> */}
+        <video src="./game.mp4" width="100%" autoPlay loop muted>
+          {/* <source
+            src="https://ai-platform-public.s3.ap-northeast-2.amazonaws.com/ysy_2_7b067af2fcf8f5853d11c2a4b977b40e.mp4"
+            type="video/mp4"
+          /> */}
+          {/* <source
+            src="https://ai-platform-public.s3.ap-northeast-2.amazonaws.com/ysy_2_408f8f4ea825ce76776b436a6e766422.mp4"
+            type="video/mp4"
+          /> */}
+        </video>
+        <div style={{ position: 'absolute', bottom: '25%', right: '20%' }}>
+          <span style={{ fontSize: '3.5rem', fontWeight: 'bold' }}>
+            AI가 전하는 <br />
+            방탈출 <br />
+            소식 및 정보
+          </span>
+        </div>
       </MainBanner>
+      <Introduction />
       <button onClick={postHandler}>등록 테스트</button>
       <button onClick={() => dispatch(generateClientTokenAsync.request())}>initiailizing</button>
       <button
         onClick={() => {
-          getModelList({
-            appId: appId,
-            clientHostname: clientHostname,
-            isClientToken: true,
-            platform: 'web',
-            sdk_v: '1.0',
-            token: token,
-            uuid: uuid,
-          });
+          getModelList(token);
         }}
       >
         getModelList
       </button>
-      <button
-        onClick={() =>
-          dispatch(
-            makeVideoAsync.request({
-              appId: appId,
-              clientHostname: clientHostname,
-              isClientToken: true,
-              platform: 'web',
-              sdk_v: '1.0',
-              token: token,
-              uuid: uuid,
-              clothes: '2',
-              language: 'ko',
-              model: 'ysy',
-              text: '방탈출이란 일정 시간동안 방에 갇혀 상황에 맞는 추리를 통해 문제를 풀고 탈출을 해야 하는 일종의 게임입니다.',
-            }),
-          )
-        }
-      >
+      <input type="text" onChange={(e) => setText(e.target.value)} />
+      <button onClick={() => dispatch(makeVideoAsync.request({ token: token, text: text }))}>
         makeVideo
       </button>
       <button
         onClick={() => {
-          findProject({
-            key: videoKey,
-            appId: appId,
-            clientHostname: clientHostname,
-            isClientToken: true,
-            platform: 'web',
-            sdk_v: '1.0',
-            token: token,
-            uuid: uuid,
-          });
+          findProject({ token: token, videoKey: videoKey });
         }}
       >
         findProject

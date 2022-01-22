@@ -2,6 +2,9 @@ export const client = {
   appId: "aistudios.com",
   uuid: "6443234b-77d5-4013-bfd6-bb9399f317d9",
   clientHostname: "aistudios.com",
+  platform: 'web',
+  sdk_v: '1.0',
+  isClientToken: true,
 };
 
 export const API = 'http://localhost:8080';

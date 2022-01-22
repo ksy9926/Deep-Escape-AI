@@ -18,6 +18,6 @@ export const HeaderInnerWrap = styled.div`
   align-items: center;
 
   max-width: 1130px;
-  height: 50px;
+  height: 60px;
   margin: 0 auto;
 `;
