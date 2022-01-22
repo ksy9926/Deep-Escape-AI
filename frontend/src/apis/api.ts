@@ -1,7 +1,6 @@
 import axios from "axios";
+import { API } from "constants/constants";
 
-// const api = 'http://localhost:8080';
-const api = 'http://ec2-13-209-99-205.ap-northeast-2.compute.amazonaws.com:8080'
 // type Temp = {
 //   temp: string
 // }
@@ -14,14 +13,14 @@ const api = 'http://ec2-13-209-99-205.ap-northeast-2.compute.amazonaws.com:8080'
 // };
 
 export const getTest = async () => {
-  const res = await axios.get(api + '/')
+  const res = await axios.get(API + '/')
 
   return res.data
 }
 
 // 등록 api
 export const postTest = async (title: string) => {
-  const res = await axios.post(api + '/test/post', {
+  const res = await axios.post(API + '/test/post', {
     title: title
   })
 }

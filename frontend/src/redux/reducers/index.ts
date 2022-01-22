@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-// import todo from 'redux/reducers/todosReducer';
+import studio from 'redux/reducers/studioReducer';
 import { all } from 'redux-saga/effects'
-// import { todosSaga } from 'redux/saga/saga';
+import { studioSaga } from 'redux/saga/studioSaga';
 
 const rootReducer = combineReducers({
-  // todo
+  studio
 });
 
 export default rootReducer;
@@ -12,6 +12,5 @@ export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>
 
 export function* rootSaga() {
-  // yield all([todosSaga()])
-  yield all([])
+  yield all([studioSaga()])
 }
