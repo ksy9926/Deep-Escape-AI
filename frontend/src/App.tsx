@@ -1,9 +1,11 @@
 import 'App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from 'pages/MainPage/MainPage';
-import MakePage from 'pages/MakePage/MakePage';
-import FestaPage from 'pages/FestaPage/FestaPage';
+import InfoPage from 'pages/InfoPage/InfoPage';
+import AdminPage from 'pages/AdminPage/AdminPage';
+import ThemePage from 'pages/ThemePage/ThemePage';
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 function App() {
   return (
@@ -11,9 +13,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
-        <Route path="/make" element={<MakePage />}></Route>
-        <Route path="/festa" element={<FestaPage />}></Route>
+        <Route path="/info" element={<InfoPage />}></Route>
+        <Route path="/theme" element={<ThemePage />}></Route>
+        <Route path="/admin" element={<AdminPage />}></Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

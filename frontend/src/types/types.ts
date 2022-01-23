@@ -1,4 +1,5 @@
-import * as actions from 'redux/actions/studioAction'
+import * as studioActions from 'redux/actions/studioAction'
+import * as userActions from 'redux/actions/userAction'
 import { ActionType } from "typesafe-actions";
 
 export interface StudioState {
@@ -16,7 +17,14 @@ export interface StudioState {
   videoKey: string
 }
 
-export type StudioAction = ActionType<typeof actions>;
+export interface UserState {
+  nickname: string,
+  admin: boolean,
+}
+
+export type StudioAction = ActionType<typeof studioActions>;
+
+export type UserAction = ActionType<typeof userActions>;
 
 export interface GenerateClientTokenType {
   appId: string,

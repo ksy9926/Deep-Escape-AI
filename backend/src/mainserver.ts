@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 import { MongoConnector } from './mongo-connector';
 import testRouter from './routes/test-router';
+import userRouter from './routes/user-router';
 
 export class MainServer {
 	private app: any;
@@ -21,6 +22,7 @@ export class MainServer {
 		this.app.use(cors()); //cors를 allow한다.
 
 		this.app.use("/test", testRouter);
+		this.app.use("/user", userRouter);
     this.app.get('/', (req: Request, res: Response) => {
       res.send('Hello World');
     });

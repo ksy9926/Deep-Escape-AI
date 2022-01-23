@@ -1,29 +1,23 @@
-import { useRef, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import { HeaderWrap, HeaderInnerWrap } from 'styles/headerStyle';
+import { getUserinfo } from 'apis/user';
+import { useEffect } from 'react';
+import { HeaderWrap, HeaderInnerWrap, LinkNav, LinkLogo } from 'styles/headerStyle';
 
 const Header = () => {
+  useEffect(() => {
+    getUserinfo();
+  }, []);
+
   return (
     <HeaderWrap>
       <HeaderInnerWrap>
         <div>
-          <Link to="/" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-            DEEP FESTA
-          </Link>
+          <LinkLogo to="/">DEEPESCAPE AI</LinkLogo>
         </div>
         <div>
-          <Link to="/festa" style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
-            서비스 소개
-          </Link>
-          <Link to="/make" style={{ marginLeft: '20px', fontWeight: 'bold', fontSize: '1.2rem' }}>
-            방탈출이란
-          </Link>
-          <Link to="/" style={{ marginLeft: '20px', fontWeight: 'bold', fontSize: '1.2rem' }}>
-            테마정보
-          </Link>
-          <Link to="/" style={{ marginLeft: '20px', fontWeight: 'bold', fontSize: '1.2rem' }}>
-            관리하기
-          </Link>
+          <LinkNav to="/">서비스 소개</LinkNav>
+          <LinkNav to="/make">방탈출이란</LinkNav>
+          <LinkNav to="/theme">테마정보</LinkNav>
+          <LinkNav to="/admin">관리하기</LinkNav>
         </div>
       </HeaderInnerWrap>
     </HeaderWrap>

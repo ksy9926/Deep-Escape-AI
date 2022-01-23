@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const HeaderWrap = styled.header`
   position: fixed;
@@ -6,7 +7,7 @@ export const HeaderWrap = styled.header`
   left: 0;
   z-index: 50;
   width: 100vw;
-  background: #0000;
+  background: #0007;
 
   backdrop-filter: blur(30px);
   border-bottom: 1px solid rgba(0, 27, 55, 0.1);
@@ -21,3 +22,13 @@ export const HeaderInnerWrap = styled.div`
   height: 60px;
   margin: 0 auto;
 `;
+
+export const LinkLogo = styled(Link)`
+  font-weight: bold;
+  font-size: 1.2rem;
+`
+export const LinkNav = styled(Link)`
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 1.2rem;
+`
