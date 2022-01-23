@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const MainWrap = styled.main``;
+export const MainWrap = styled.main`
+  width: 100%;
+`;
 
 export const MainBanner = styled.section`
   position: relative;

@@ -6,7 +6,10 @@ import {
   GET_USERINFO_ERROR,
   SET_USERINFO,
   SET_USERINFO_SUCCESS,
-  SET_USERINFO_ERROR
+  SET_USERINFO_ERROR,
+  RESET_USERINFO,
+  RESET_USERINFO_SUCCESS,
+  RESET_USERINFO_ERROR,
 } from 'redux/actions/userAction';
 
 const initialState: UserState = {
@@ -20,7 +23,8 @@ const userReducer = createReducer<UserState, UserAction>(initialState, {
   }),
   [GET_USERINFO_SUCCESS]: (state, action) => ({
     ...state,
-    token: action.payload
+    nickname: action.payload.nickname,
+    admin: action.payload.admin
   }),
   [GET_USERINFO_ERROR]: (state, action) => ({
     ...state,
@@ -37,6 +41,17 @@ const userReducer = createReducer<UserState, UserAction>(initialState, {
     admin: action.payload.admin
   }},
   [SET_USERINFO_ERROR]: (state, action) => ({
+    ...state,
+  }),
+  [RESET_USERINFO]: (state) => ({
+    ...state,
+  }),
+  [RESET_USERINFO_SUCCESS]: (state, action) => ({
+    ...state,
+    nickname: '',
+    admin: false
+  }),
+  [RESET_USERINFO_ERROR]: (state, action) => ({
     ...state,
   }),
 });

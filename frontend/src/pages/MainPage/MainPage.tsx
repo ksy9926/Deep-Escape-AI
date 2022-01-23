@@ -1,24 +1,9 @@
-import { useEffect } from 'react';
-import { getTest, postTest } from 'apis/api';
 import { MainWrap, MainBanner } from 'styles/mainStyle';
 import Introduction from 'components/MainPage/Introduction';
 import Awards from 'components/MainPage/Awards';
 import { Fade } from 'react-awesome-reveal';
 
 const MainPage = () => {
-  useEffect(() => {
-    async function fetchData() {
-      const res = await getTest();
-      console.log('res: ', res);
-      return res;
-    }
-    fetchData();
-  }, []);
-
-  const postHandler = () => {
-    postTest('제목 테스트');
-  };
-
   return (
     <MainWrap>
       <MainBanner>
@@ -36,7 +21,6 @@ const MainPage = () => {
       </MainBanner>
       <Introduction />
       <Awards />
-      <button onClick={postHandler}>등록 테스트</button>
     </MainWrap>
   );
 };

@@ -23,7 +23,7 @@ router.get('/profile', async (request, response) => {
             response.status(400).send('user not exist');
             return;
         }
-        response.status(200).send({ nickname: user.nickname });
+        response.status(200).send({ nickname: user.nickname, admin: user.admin });
     }
     catch (err) {
         response.status(400).send('user error');
@@ -57,6 +57,7 @@ router.post('/login', async (request, response) => {
         response.json({
             nickname: user.nickname,
             token: token,
+            admin: user.admin
         });
     }
     catch (err) {

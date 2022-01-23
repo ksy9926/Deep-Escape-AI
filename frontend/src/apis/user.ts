@@ -43,5 +43,5 @@ export const register = async (email: string, nickname: string, password: string
 
   console.log('register: ', res)
 
-  return res
+  return res.data
 }

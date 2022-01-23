@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mongo_connector_1 = require("./mongo-connector");
-const test_router_1 = __importDefault(require("./routes/test-router"));
+const video_router_1 = __importDefault(require("./routes/video-router"));
 const user_router_1 = __importDefault(require("./routes/user-router"));
 class MainServer {
     constructor() {
@@ -20,7 +20,7 @@ class MainServer {
         await mongoConnector.connect();
         this.app.use(express_1.default.json());
         this.app.use((0, cors_1.default)()); //cors를 allow한다.
-        this.app.use("/test", test_router_1.default);
+        this.app.use("/video", video_router_1.default);
         this.app.use("/user", user_router_1.default);
         this.app.get('/', (req, res) => {
             res.send('Hello World');

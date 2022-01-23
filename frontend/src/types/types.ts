@@ -1,5 +1,6 @@
 import * as studioActions from 'redux/actions/studioAction'
 import * as userActions from 'redux/actions/userAction'
+import * as videoActions from 'redux/actions/videoAction'
 import { ActionType } from "typesafe-actions";
 
 export interface StudioState {
@@ -22,9 +23,15 @@ export interface UserState {
   admin: boolean,
 }
 
-export type StudioAction = ActionType<typeof studioActions>;
+export type VideoState = {
+  videoId: number,
+  type: string,
+  url: string
+}[]
 
+export type StudioAction = ActionType<typeof studioActions>;
 export type UserAction = ActionType<typeof userActions>;
+export type VideoAction = ActionType<typeof videoActions>;
 
 export interface GenerateClientTokenType {
   appId: string,
