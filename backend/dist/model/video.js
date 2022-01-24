@@ -29,6 +29,8 @@ const schema = new mongoose_1.Schema({
     videoId: { type: Number, unique: true, index: true },
     type: { type: String, required: true },
     url: { type: String, required: true },
+    text: { type: String, required: true },
+    selected: { type: Boolean, required: true },
 });
 mongoose_auto_increment_1.default.initialize(mongoose_1.default.connection);
 schema.plugin(mongoose_auto_increment_1.default.plugin, {

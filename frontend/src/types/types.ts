@@ -4,16 +4,7 @@ import * as videoActions from 'redux/actions/videoAction'
 import { ActionType } from "typesafe-actions";
 
 export interface StudioState {
-  appId: string,
-  clientHostname: string,
-  isClientToken: boolean,
-  platform: string,
-  sdk_v: string,
   token: string,
-  uuid: string,
-  clothes: string,
-  language: string,
-  model: string,
   text: string,
   videoKey: string
 }

@@ -3,8 +3,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import { MongoConnector } from './mongo-connector';
-import videoRouter from './routes/video-router';
-import userRouter from './routes/user-router';
+import videoRouter from './routes/videoRouter';
+import userRouter from './routes/userRouter';
+import themeRouter from './routes/themeRouter';
 
 export class MainServer {
 	private app: any;
@@ -23,6 +24,7 @@ export class MainServer {
 
 		this.app.use("/video", videoRouter);
 		this.app.use("/user", userRouter);
+		this.app.use("/theme", themeRouter);
     this.app.get('/', (req: Request, res: Response) => {
       res.send('Hello World');
     });

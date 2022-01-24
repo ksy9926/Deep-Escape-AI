@@ -27,8 +27,10 @@ const router = asyncify(express_1.default.Router());
 // 영상 조회
 router.get('/', async (req, res) => {
     const videoService = new video_service_1.VideoService();
+    const type = req.query.type;
+    const selected = req.query.selected;
     try {
-        const video = await videoService.find();
+        const video = await videoService.findOne(type, selected);
         if (!video) {
             express_1.response.status(400).send('video not exist');
         }
@@ -41,16 +43,24 @@ router.get('/', async (req, res) => {
 //영상 생성 요청.
 router.post('/', async (req, res) => {
     const videoService = new video_service_1.VideoService();
+    console.log('text: ', req.body.text);
     try {
         let video = {
             type: req.body.type,
-            url: req.body.url
+            url: req.body.url,
+            text: req.body.text,
+            selected: req.body.selected
         };
         const result = await videoService.create(video);
+        if (req.body.videoId) {
+            console.log('생성 안의 수정으로 들어옴');
+            await videoService.update(req.body.videoId);
+        }
         console.log(result);
         res.status(201).send('success');
     }
     catch (err) {
+        console.log('error: ', err);
         res.status(400).send('write error');
     }
 });

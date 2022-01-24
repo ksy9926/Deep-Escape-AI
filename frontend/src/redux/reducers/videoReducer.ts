@@ -9,15 +9,16 @@ import {
 const initialState: VideoState = [];
 
 const videoReducer = createReducer<VideoState, VideoAction>(initialState, {
-  [GET_VIDEOS]: (state) => ({
+  [GET_VIDEOS]: (state) => ([
+    ...state
+  ]),
+  [GET_VIDEOS_SUCCESS]: (state, action) => ([
     ...state,
-  }),
-  [GET_VIDEOS_SUCCESS]: (state, action) => ({
+    ...action.payload
+  ]),
+  [GET_VIDEOS_ERROR]: (state, action) => ([
     ...state,
-  }),
-  [GET_VIDEOS_ERROR]: (state, action) => ({
-    ...state,
-  }),
+  ]),
 });
 
 export default videoReducer;

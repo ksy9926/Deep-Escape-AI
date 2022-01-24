@@ -4,12 +4,12 @@ import { RootState } from 'redux/reducers';
 import { getUserinfoAsync, resetUserinfoAsync } from 'redux/actions/userAction';
 import { HeaderWrap, HeaderInnerWrap, LinkNav, LinkBold, Div } from 'styles/headerStyle';
 import { message } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user);
-
-  console.log('user: ', user);
 
   useEffect(() => {
     dispatch(getUserinfoAsync.request());
@@ -31,7 +31,7 @@ const Header = () => {
     dispatch(resetUserinfoAsync.request());
   };
 
-  const adminHandler = () => {
+  const adminHandler = (path: string) => {
     if (!user.admin) {
       message.warn({
         content: `관리자 계정만 접근할 수 있습니다.`,
@@ -40,29 +40,39 @@ const Header = () => {
           marginTop: '10vh',
         },
       });
+    } else {
+      routeChange(path);
     }
+  };
+
+  const routeChange = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
   };
 
   return (
     <HeaderWrap>
       <HeaderInnerWrap>
         <Div>
-          <LinkBold to="/">DEEPESCAPE AI</LinkBold>
+          <LinkBold onClick={() => routeChange('/')}>DEEPESCAPE AI</LinkBold>
         </Div>
         <Div>
-          <LinkNav to="/" style={{ padding: 0 }}>
+          <LinkNav onClick={() => routeChange('/')} style={{ padding: 0 }}>
             서비스 소개
           </LinkNav>
-          <LinkNav to="/theme">테마정보</LinkNav>
-          <LinkNav to={user.admin ? '/admin' : '/'} onClick={adminHandler}>
-            관리
-          </LinkNav>
+          <LinkNav onClick={() => routeChange('/theme')}>테마정보</LinkNav>
+          <LinkNav onClick={() => adminHandler('/admin')}>관리</LinkNav>
           {user.nickname ? (
-            <LinkNav to="/" onClick={logout}>
+            <LinkNav
+              onClick={() => {
+                routeChange('/');
+                logout();
+              }}
+            >
               로그아웃
             </LinkNav>
           ) : (
-            <LinkNav to="/login">로그인</LinkNav>
+            <LinkNav onClick={() => routeChange('/login')}>로그인</LinkNav>
           )}
         </Div>
       </HeaderInnerWrap>

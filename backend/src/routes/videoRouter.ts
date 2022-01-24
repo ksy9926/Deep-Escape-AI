@@ -1,5 +1,5 @@
 import express, { Request, response, Response } from 'express';
-import { VideoService } from '../services/video-service';
+import { VideoService } from '../services/videoService';
 import { Video } from '../model/video';
 
 const asyncify = require('express-asyncify');
@@ -9,9 +9,26 @@ const router = asyncify(express.Router());
 // 영상 조회
 router.get('/', async (req: Request, res: Response) => {
   const videoService = new VideoService();
+  const type: any = req.query.type
+  const selected: any = req.query.selected
 
   try{
-    const video: Video | null = await videoService.find();
+    const video: Video | null = await videoService.findOne(type, selected);
+    if(!video){
+      response.status(400).send('video not exist')  
+    }
+    res.status(200).send(video);
+  }catch(err) {
+    res.status(400).send('write error');
+  }
+});
+
+// 모든 영상 조회
+router.get('/videos', async (req: Request, res: Response) => {
+  const videoService = new VideoService();
+
+  try{
+    const video: any = await videoService.findAll();
     if(!video){
       response.status(400).send('video not exist')  
     }
@@ -24,16 +41,25 @@ router.get('/', async (req: Request, res: Response) => {
 //영상 생성 요청.
 router.post('/', async (req: Request, res: Response) => {
   const videoService = new VideoService();
+  console.log('text: ', req.body.text)
 
   try{
     let video: Video = {
       type: req.body.type,
-      url: req.body.url
+      url: req.body.url,
+      text: req.body.text,
+      selected: req.body.selected
     };
     const result = await videoService.create(video);
+
+    if(req.body.videoId){
+      console.log('생성 안의 수정으로 들어옴')
+      await videoService.update(req.body.videoId)
+    }
     console.log(result);
     res.status(201).send('success');
   }catch(err) {
+    console.log('error: ', err)
     res.status(400).send('write error');
   }
 });

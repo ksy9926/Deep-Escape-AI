@@ -54,6 +54,7 @@ router.post('/login', async (request, response) => {
         }, process.env.SECRET_KEY || 'secret_key', {
             expiresIn: '600m'
         });
+        console.log('user 있음');
         response.json({
             nickname: user.nickname,
             token: token,

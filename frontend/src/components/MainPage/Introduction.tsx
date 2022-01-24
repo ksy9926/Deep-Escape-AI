@@ -1,57 +1,67 @@
-import React from 'react';
-import { Fade, Zoom } from 'react-awesome-reveal';
+import { useEffect, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
+import { getVideos } from 'apis/video';
+import { VIDEO_TYPE } from 'constants/constants';
+import {
+  IntroductionWrap,
+  IntroductionTitle,
+  MiniTitle,
+  SubTitle,
+  Description,
+  VideoZoom,
+  Video,
+  Button,
+  FlexDiv,
+  FlexMarginDiv,
+} from 'styles/mainStyle';
 
 const Introduction = () => {
+  const [introVideo, setIntroVideo] = useState({
+    url: '',
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getVideos(VIDEO_TYPE.introduction);
+
+      setIntroVideo(res);
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div style={{ maxWidth: '1130px', margin: '50px auto' }}>
-      <h3
-        style={{ textAlign: 'center', fontSize: '3rem', margin: '100px 0 50px', fontWeight: '700' }}
-      >
-        What is Room Escape?
-      </h3>
-      <div style={{ display: 'flex' }}>
-        <div style={{ flex: 1 }}>
+    <IntroductionWrap>
+      <IntroductionTitle>What is Room Escape?</IntroductionTitle>
+      <FlexDiv>
+        <FlexMarginDiv>
           <Fade direction="down">
-            <div style={{ margin: '20px 0' }}>Room Escape</div>
+            <MiniTitle>Room Escape</MiniTitle>
           </Fade>
           <Fade direction="left">
-            <div style={{ fontSize: '2.5rem' }}>
+            <SubTitle>
               세상의 <br />
               모든 방탈출
-            </div>
+            </SubTitle>
           </Fade>
           <Fade direction="up">
-            <div style={{ margin: '20px 0', fontSize: '1.2rem' }}>
-              AI를 통해 <br />
-              누구나 언제 어디서든 <br />
-              방탈출에 대해 알아보세요.
-            </div>
+            <Description>
+              영상 AI를 통해 <br />
+              방탈출이란 무엇인지, <br />
+              최신 소식은 어떤것이 있는지 알아보세요.
+            </Description>
           </Fade>
-          <button style={{ border: '1px solid black', background: 'none' }}>Room Escape</button>
-        </div>
-
-        <Zoom
-          style={{
-            flex: 1,
-            height: '500px',
-            borderRadius: '100px',
-            // background: 'rgb(56, 112, 216)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '10rem',
-            color: '#fff',
-          }}
-        >
-          <video
-            src="https://ai-platform-public.s3.ap-northeast-2.amazonaws.com/ysy_2_7b067af2fcf8f5853d11c2a4b977b40e.mp4"
-            // src="https://ai-platform-public.s3.ap-northeast-2.amazonaws.com/ysy_2_408f8f4ea825ce76776b436a6e766422.mp4"
-            height="500px"
-            controls
-          />
-        </Zoom>
-      </div>
-    </div>
+          <Fade direction="up">
+            <Button>테마정보 보러가기</Button>
+          </Fade>
+        </FlexMarginDiv>
+        {introVideo.url && (
+          <VideoZoom>
+            <Video src={introVideo.url} controls />
+          </VideoZoom>
+        )}
+      </FlexDiv>
+    </IntroductionWrap>
   );
 };
 

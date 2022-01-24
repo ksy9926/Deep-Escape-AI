@@ -10,16 +10,7 @@ import {
 } from 'redux/actions/studioAction';
 
 const initialState: StudioState = {
-  appId: 'aistudios.com',
-  clientHostname: 'aistudios.com',
-  isClientToken: true,
-  platform: 'web',
-  sdk_v: "1.0",
   token: '',
-  uuid: '6443234b-77d5-4013-bfd6-bb9399f317d9',
-  clothes: '',
-  language: '',
-  model: '',
   text: '',
   videoKey: ''
 };

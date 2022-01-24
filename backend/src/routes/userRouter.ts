@@ -4,7 +4,7 @@ import { hash, compare } from 'bcryptjs'; //암호를 암호화, 비교할 수 �
 import jwt from 'jsonwebtoken';
 
 import { verifyToken } from '../authorization';
-import { UserService } from '../services/user-service';
+import { UserService } from '../services/userService';
 import { User } from '../model/user';
 
 const asyncify = require('express-asyncify');
@@ -44,14 +44,14 @@ router.post('/login', async (request: Request, response: Response) => {
     if(!user) {
       //해당 이메일 주소 없음.
       response.status(400).send('email not exist');
-      return;   
+      return;
     }
 
     const result = await compare(password, user.password);
     if(!result) {
       //비밀번호 불일치.
       response.status(400).send('password incorrect');
-      return;   
+      return;
     }
     
     //유저 정보를 가지고 토큰을 만들어낸다.
@@ -65,6 +65,7 @@ router.post('/login', async (request: Request, response: Response) => {
         expiresIn: '600m'
       }
     );
+    console.log('user 있음')
     response.json({ 
       nickname: user.nickname,
       token: token,

@@ -23,9 +23,16 @@ export const HeaderInnerWrap = styled.nav`
   margin: 0 auto;
 `;
 
-export const LinkBold = styled(Link)`
+export const LinkBold = styled.span`
   font-weight: bold;
   font-size: 1.2rem;
+  color: #fff;
+
+  &:hover {
+    cursor: pointer;
+    color: #e68;
+    transition: all 0.5s ease;
+  }
 `
 export const LinkNav = styled(LinkBold)`
   padding-left: 20px;

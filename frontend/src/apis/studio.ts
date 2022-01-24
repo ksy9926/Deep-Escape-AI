@@ -1,9 +1,9 @@
 import axios from "axios"
-import { client, STUDIO_API } from "constants/constants";
+import { CLIENT, STUDIO_API } from "constants/constants";
 
 
 export const generateClientToken = async () => {
-  const res = await axios.get(STUDIO_API + `/generateClientToken?appId=${client.appId}&userKey=${client.uuid}`);
+  const res = await axios.get(STUDIO_API + `/generateClientToken?appId=${CLIENT.appId}&userKey=${CLIENT.uuid}`);
 
   console.log("generateClientToken: ", res.data);
   return res.data
@@ -11,13 +11,13 @@ export const generateClientToken = async () => {
 
 export const getModelList = async (token: string) => {
   const res = await axios.post(STUDIO_API + '/getModelList', {
-    appId: client.appId,
-    clientHostname: client.clientHostname,
-    isClientToken: client.isClientToken,
-    platform: client.platform,
-    sdk_v: client.sdk_v,
+    appId: CLIENT.appId,
+    clientHostname: CLIENT.clientHostname,
+    isClientToken: CLIENT.isClientToken,
+    platform: CLIENT.platform,
+    sdk_v: CLIENT.sdk_v,
     token: token,
-    uuid: client.uuid,
+    uuid: CLIENT.uuid,
   })
 
   console.log("getModelList: ", res.data);
@@ -25,13 +25,13 @@ export const getModelList = async (token: string) => {
 
 export const makeVideo = async ({token, text}:{token: string, text: string}) => {
   const res = await axios.post(STUDIO_API + '/makeVideo', {
-    appId: client.appId,
-    clientHostname: client.clientHostname,
-    isClientToken: client.isClientToken,
-    platform: client.platform,
-    sdk_v: client.sdk_v,
+    appId: CLIENT.appId,
+    clientHostname: CLIENT.clientHostname,
+    isClientToken: CLIENT.isClientToken,
+    platform: CLIENT.platform,
+    sdk_v: CLIENT.sdk_v,
     token: token,
-    uuid: client.uuid,
+    uuid: CLIENT.uuid,
     clothes: '2',
     language: 'ko',
     model: 'ysy',
@@ -45,13 +45,13 @@ export const makeVideo = async ({token, text}:{token: string, text: string}) => 
 export const findProject = async ({token, videoKey}:{token: string, videoKey: string}) => {
   const res = await axios.post(STUDIO_API + '/findProject', {
     key: videoKey,
-    appId: client.appId,
-    clientHostname: client.clientHostname,
-    isClientToken: client.isClientToken,
-    platform: client.platform,
-    sdk_v: client.sdk_v,
+    appId: CLIENT.appId,
+    clientHostname: CLIENT.clientHostname,
+    isClientToken: CLIENT.isClientToken,
+    platform: CLIENT.platform,
+    sdk_v: CLIENT.sdk_v,
     token: token,
-    uuid: client.uuid,
+    uuid: CLIENT.uuid,
   });
 
   console.log("findProject: ", res.data);

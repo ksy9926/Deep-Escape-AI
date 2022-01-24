@@ -5,12 +5,16 @@ export interface Video {
   videoId?: number;
   type: string;
   url: string;
+  text: string;
+  selected: boolean
 }
 
 const schema = new Schema({
   videoId: {type: Number, unique: true, index: true},
   type: {type: String, required: true},
   url: {type: String, required: true},
+  text: {type: String, required: true},
+  selected: {type: Boolean, required: true},
 })
 
 autoIncrement.initialize(mongoose.connection);
