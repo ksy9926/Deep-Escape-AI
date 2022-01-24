@@ -2,39 +2,46 @@ import { Fade } from 'react-awesome-reveal';
 import {
   AwardsWrap,
   AwardsInnerWrap,
+  AwardsWinnerImageWrap,
+  AwardsWinnerImage,
+  AwardsTextWrap,
+  AwardsTitle,
   MiniTitle,
   SubTitle,
   Description,
-  Button,
+  ReservationLink,
   FlexDiv,
-  FlexItemDiv,
 } from 'styles/mainStyle';
 
 const Awards = () => {
   return (
     <AwardsWrap>
       <AwardsInnerWrap>
+        <AwardsTitle>ESCAPE ROOM AWARDS</AwardsTitle>
         <FlexDiv>
-          <div style={{ flex: 1, alignSelf: 'center', textAlign: 'center' }}>
-            <img src="images/us.jpeg" width="300px" alt="award" />
-          </div>
-          <FlexItemDiv>
+          <AwardsWinnerImageWrap>
             <Fade direction="down">
-              <MiniTitle>올해의 테마</MiniTitle>
+              <AwardsWinnerImage src="images/us.jpeg" alt="award" />
             </Fade>
-            <Fade direction="left">
-              <SubTitle>US</SubTitle>
+          </AwardsWinnerImageWrap>
+          <AwardsTextWrap>
+            <Fade direction="down">
+              <MiniTitle>2021 한국 방탈출 어워즈</MiniTitle>
             </Fade>
-            <Fade direction="up">
-              <Description>
-                강남 <br />
-                키이스케이프 우주라이크점 <br />
-              </Description>
+            <Fade direction="right">
+              <SubTitle>
+                올해의 테마 <br /> US
+              </SubTitle>
             </Fade>
-            <Fade direction="up">
-              <Button>테마정보 보러가기</Button>
-            </Fade>
-          </FlexItemDiv>
+            <Description>
+              강남 키이스케이프
+              <br />
+              우주라이크점
+            </Description>
+            <ReservationLink href="https://keyescape.co.kr/" target="_blank">
+              테마 예약하기
+            </ReservationLink>
+          </AwardsTextWrap>
         </FlexDiv>
       </AwardsInnerWrap>
     </AwardsWrap>

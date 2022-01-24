@@ -38,7 +38,7 @@ export const IntroductionTitle = styled.h2`
   font-weight: 700;
 `
 export const MiniTitle = styled.div`
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   margin: 40px 0 10px;
 `
@@ -92,6 +92,20 @@ export const Button = styled.button`
   }
 `
 
+export const ReservationLink = styled.a`
+  font-size: 1.1rem;
+  padding: 10px;
+  border: 1px solid white;
+  background: none;
+  color: #fff;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid #a68;
+    transition: all 0.5s ease;
+  }
+`
+
 export const AwardsWrap = styled.div`
   background: #89cdb6;
 `
@@ -99,7 +113,34 @@ export const AwardsWrap = styled.div`
 export const AwardsInnerWrap = styled.div`
   max-width: 1130px;
   margin: 50px auto 100px;
-  padding: 80px;
+  padding: 100px 0 100px;
+  color: #fff;
+`
+
+export const AwardsTitle = styled.h2`
+  margin-bottom: 80px;
+  text-align: center; 
+  font-size: 3rem; 
+  font-weight: 700;
+  color: #fff;
+`
+
+export const AwardsWinnerImageWrap = styled.div`
+  position: relative;
+
+  flex: 1;
+  text-align: center;
+`
+
+export const AwardsWinnerImage = styled.img`
+  width: 400px;
+  height: 400px;
+  border-radius: 30px;
+`
+
+export const AwardsTextWrap = styled.div`
+  flex: 1;
+  text-align: center;
 `
 
 export const ShortcutWrap = styled.div`
