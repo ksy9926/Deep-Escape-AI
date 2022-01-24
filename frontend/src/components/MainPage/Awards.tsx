@@ -19,11 +19,13 @@ const Awards = () => {
       <AwardsInnerWrap>
         <AwardsTitle>ESCAPE ROOM AWARDS</AwardsTitle>
         <FlexDiv>
+          {/* Awards Info : 테마 이미지 UI */}
           <AwardsWinnerImageWrap>
             <Fade direction="down">
               <AwardsWinnerImage src="images/us.jpeg" alt="award" />
             </Fade>
           </AwardsWinnerImageWrap>
+          {/* Awards Info : 테마 정보 UI */}
           <AwardsTextWrap>
             <Fade direction="down">
               <MiniTitle>2021 한국 방탈출 어워즈</MiniTitle>

@@ -14,6 +14,7 @@ export const FooterInnerWrap = styled.div`
   margin: 0 auto;
 `;
 
+// 개인 정보
 export const ContactDiv = styled.div`
 `
 export const ContactTitle = styled.div`
@@ -30,6 +31,7 @@ export const GithubLink = styled.a`
   color: #000;
 `
 
+// 딥브레인 정보
 export const DeepBrainDiv = styled.div`
 `
 

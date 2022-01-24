@@ -1,3 +1,4 @@
+// AI STUIDOS 입력용 정보
 export const CLIENT = {
   appId: "aistudios.com",
   uuid: "6443234b-77d5-4013-bfd6-bb9399f317d9",
@@ -7,11 +8,13 @@ export const CLIENT = {
   isClientToken: true,
 };
 
+// AI 영상 종류
 export const VIDEO_TYPE = {
   introduction: 'introduction',
   awards: 'awards'
 }
 
-export const API = 'http://localhost:8080';
+// API 주소 목록
 // export const API = 'http://ec2-13-209-99-205.ap-northeast-2.compute.amazonaws.com:8080'
+export const API = 'http://localhost:8080';
 export const STUDIO_API='http://localhost:3000/api/odin'

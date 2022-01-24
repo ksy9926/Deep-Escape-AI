@@ -1,5 +1,6 @@
 import mongoose, { Connection } from 'mongoose';
 
+// 몽고 커넥터 클래스
 export class MongoConnector {
   private mongoConnection: Connection;
 
@@ -7,6 +8,7 @@ export class MongoConnector {
 
   } 
   
+  // 몽고디비 연결
   public connect(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       mongoose.connection.once('open', function () {
@@ -31,21 +33,14 @@ export class MongoConnector {
         return resolve(null);
       });
         
-      // all executed methods log output to console
       mongoose.set('debug', true)
-      // disable colors in debug mode
       mongoose.set('debug', { color: false })
-      // get mongodb-shell friendly output (ISODate)
       mongoose.set('debug', { shell: true })
 
-      //db setting
+      // 몽고디비 세팅 및 연결
       this.mongoConnection = mongoose.connection;
       mongoose.connect(process.env.MONGODB_URL, { 
-        keepAlive: true, 
-        // useNewUrlParser: true, 
-        // useUnifiedTopology: true, 
-        // autoReconnect: false,
-        // useCreateIndex: true 
+        keepAlive: true
       }).then(() => {
         console.log('MongoDB Connected.');
         resolve(null);

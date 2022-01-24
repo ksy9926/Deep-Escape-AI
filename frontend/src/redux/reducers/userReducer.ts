@@ -12,12 +12,14 @@ import {
   RESET_USERINFO_ERROR,
 } from 'redux/actions/userAction';
 
+// user 초기 상태 설정
 const initialState: UserState = {
   nickname: '',
   admin: false
 };
 
 const userReducer = createReducer<UserState, UserAction>(initialState, {
+  // 유저 정보 받아오기 리듀서
   [GET_USERINFO]: (state) => ({
     ...state,
   }),
@@ -29,6 +31,7 @@ const userReducer = createReducer<UserState, UserAction>(initialState, {
   [GET_USERINFO_ERROR]: (state, action) => ({
     ...state,
   }),
+  // 유저 정보 변경
   [SET_USERINFO]: (state) => ({
     ...state,
   }),
@@ -43,6 +46,7 @@ const userReducer = createReducer<UserState, UserAction>(initialState, {
   [SET_USERINFO_ERROR]: (state, action) => ({
     ...state,
   }),
+  // 유저 정보 리셋 리듀서
   [RESET_USERINFO]: (state) => ({
     ...state,
   }),

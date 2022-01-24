@@ -1,17 +1,15 @@
 import express, { Request, Response } from 'express';
-//import asyncify from 'express-asyncify';
-import { hash, compare } from 'bcryptjs'; //암호를 암호화, 비교할 수 있는 모듈.
+import { hash, compare } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
 import { verifyToken } from '../authorization';
 import { UserService } from '../services/userService';
 import { User } from '../model/user';
 
 const asyncify = require('express-asyncify');
-//라우터에서 비동기 함수를 사용할 수 있게 한다.
+
 const router = asyncify(express.Router());
 
-//유저 정보 요청.
+// 유저 정보 요청
 router.use('/profile', verifyToken);
 router.get('/profile', async (request: Request, response: Response) => {
   const userService = new UserService();
@@ -20,8 +18,8 @@ router.get('/profile', async (request: Request, response: Response) => {
     let email: string = response.locals['email'];
 
     const user: User | null = await userService.read(email);
+    // 유저 없는 경우
     if(!user) {
-      //해당 유저 없음.
       response.status(400).send('user not exist');
       return;   
     }
@@ -32,7 +30,7 @@ router.get('/profile', async (request: Request, response: Response) => {
   }
 });
 
-//유저 로그인 요청.
+// 유저 로그인 요청
 router.post('/login', async (request: Request, response: Response) => {
   const userService = new UserService();
 
@@ -42,19 +40,19 @@ router.post('/login', async (request: Request, response: Response) => {
 
     const user: User | null = await userService.read(email);
     if(!user) {
-      //해당 이메일 주소 없음.
+      // 이메일 주소 없음
       response.status(400).send('email not exist');
       return;
     }
 
     const result = await compare(password, user.password);
     if(!result) {
-      //비밀번호 불일치.
+      // 비밀번호 불일치
       response.status(400).send('password incorrect');
       return;
     }
     
-    //유저 정보를 가지고 토큰을 만들어낸다.
+    // 유저 정보로 토큰 생성
     const token = jwt.sign(
       {
         email: email,
@@ -76,13 +74,13 @@ router.post('/login', async (request: Request, response: Response) => {
   }
 });
 
-//유저 가입 요청.
+// 유저 회원가입 요청
 router.post('/register', async (request: Request, response: Response) => {
   const userService = new UserService();
 
   let user: User = request.body;
   
-  //유저의 암호를 해쉬화한다.
+  // 유저 암호 해쉬화
   user.password = await hash(user.password, 5);
 
   try{

@@ -1,7 +1,7 @@
 import axios from "axios"
 import { CLIENT, STUDIO_API } from "constants/constants";
 
-
+// AI STUDIOS 토큰 생성 API
 export const generateClientToken = async () => {
   const res = await axios.get(STUDIO_API + `/generateClientToken?appId=${CLIENT.appId}&userKey=${CLIENT.uuid}`);
 
@@ -9,6 +9,7 @@ export const generateClientToken = async () => {
   return res.data
 }
 
+// AI STUDIOS 모델 목록 조회 API
 export const getModelList = async (token: string) => {
   const res = await axios.post(STUDIO_API + '/getModelList', {
     appId: CLIENT.appId,
@@ -23,6 +24,7 @@ export const getModelList = async (token: string) => {
   console.log("getModelList: ", res.data);
 }
 
+// AI STUDIOS 영상 생성 API
 export const makeVideo = async ({token, text}:{token: string, text: string}) => {
   const res = await axios.post(STUDIO_API + '/makeVideo', {
     appId: CLIENT.appId,
@@ -42,6 +44,7 @@ export const makeVideo = async ({token, text}:{token: string, text: string}) => 
   return res.data
 };
 
+// AI STUDIOS 영상 작업 확인 API
 export const findProject = async ({token, videoKey}:{token: string, videoKey: string}) => {
   const res = await axios.post(STUDIO_API + '/findProject', {
     key: videoKey,

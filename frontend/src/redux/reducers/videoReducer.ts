@@ -6,9 +6,11 @@ import {
   GET_VIDEOS_ERROR,
 } from 'redux/actions/videoAction';
 
+// video 초기 상태 설정
 const initialState: VideoState = [];
 
 const videoReducer = createReducer<VideoState, VideoAction>(initialState, {
+  // 영상 조회 리듀서
   [GET_VIDEOS]: (state) => ([
     ...state
   ]),

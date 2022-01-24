@@ -1,6 +1,7 @@
 import mongoose, { Document, Schema, model } from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 
+// 비디오 타입
 export interface Video {
   videoId?: number;
   type: string;
@@ -9,6 +10,7 @@ export interface Video {
   selected: boolean
 }
 
+// 비디오 스키마
 const schema = new Schema({
   videoId: {type: Number, unique: true, index: true},
   type: {type: String, required: true},
@@ -17,11 +19,12 @@ const schema = new Schema({
   selected: {type: Boolean, required: true},
 })
 
+// 비디오 인덱스 auto increment
 autoIncrement.initialize(mongoose.connection);
 schema.plugin(autoIncrement.plugin, {
   model: 'Video',
   field: 'videoId',
-  startAt: 1, //시작.
-  increment: 1, //증가.
+  startAt: 1,
+  increment: 1,
 })
 export const VideoModel = model<Video & Document>('Video', schema);

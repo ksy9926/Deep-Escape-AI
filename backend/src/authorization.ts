@@ -13,7 +13,7 @@ const verifyToken = (request: Request, response: Response, next: NextFunction) =
     const token: string = request.headers['x-access-token'].toString();
     const secret_key = process.env.SECRET_KEY || 'secret_key';
     
-    // token does not exist
+    // 토큰 없는 경우
     if(!token) {
       return response.status(403).json({
         success: false,
@@ -21,7 +21,7 @@ const verifyToken = (request: Request, response: Response, next: NextFunction) =
       })
     }
 
-    //토큰을 검증한다.
+    // 토큰 검증
     const decoded: any = jwt.verify(token, secret_key);
     
     if (decoded) {

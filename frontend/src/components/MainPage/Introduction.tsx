@@ -20,6 +20,7 @@ const Introduction = () => {
     url: '',
   });
 
+  // 첫 진입시 AI 영상 불러오기
   useEffect(() => {
     const fetchData = async () => {
       const res = await getVideos(VIDEO_TYPE.introduction);
@@ -34,6 +35,7 @@ const Introduction = () => {
     <IntroductionWrap>
       <IntroductionTitle>What is Room Escape?</IntroductionTitle>
       <FlexDiv>
+        {/* Introduction Info : 방탈출 설명 텍스트 UI */}
         <FlexMarginDiv>
           <Fade direction="down">
             <MiniTitle>Room Escape</MiniTitle>
@@ -55,6 +57,7 @@ const Introduction = () => {
             <Button>테마정보 보러가기</Button>
           </Fade>
         </FlexMarginDiv>
+        {/* Introduction Info : 영상 비디오 UI */}
         {introVideo.url && (
           <VideoZoom>
             <Video src={introVideo.url} controls />

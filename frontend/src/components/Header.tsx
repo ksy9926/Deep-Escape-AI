@@ -11,10 +11,12 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user);
 
+  // 유저 정보 불러오기
   useEffect(() => {
     dispatch(getUserinfoAsync.request());
   }, []);
 
+  // 로그아웃 핸들러
   const logout = () => {
     if (!sessionStorage.getItem('accessToken')) {
       return;
@@ -31,6 +33,7 @@ const Header = () => {
     dispatch(resetUserinfoAsync.request());
   };
 
+  // 관리자 링크 핸들러
   const adminHandler = (path: string) => {
     if (!user.admin) {
       message.warn({
@@ -45,6 +48,7 @@ const Header = () => {
     }
   };
 
+  // 페이지 변경 핸들러
   const routeChange = (path: string) => {
     navigate(path);
     window.scrollTo(0, 0);
@@ -53,9 +57,11 @@ const Header = () => {
   return (
     <HeaderWrap>
       <HeaderInnerWrap>
+        {/* Header Info : 프로젝트 제목 및 로고 UI */}
         <Div>
           <LinkBold onClick={() => routeChange('/')}>DEEPESCAPE AI</LinkBold>
         </Div>
+        {/* Header Info : 내비게이션 UI */}
         <Div>
           <LinkNav onClick={() => routeChange('/')} style={{ padding: 0 }}>
             서비스 소개

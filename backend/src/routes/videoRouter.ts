@@ -3,10 +3,9 @@ import { VideoService } from '../services/videoService';
 import { Video } from '../model/video';
 
 const asyncify = require('express-asyncify');
-//라우터에서 비동기 함수를 사용할 수 있게 한다.
 const router = asyncify(express.Router());
 
-// 영상 조회
+// 영상 조회 요청
 router.get('/', async (req: Request, res: Response) => {
   const videoService = new VideoService();
   const type: any = req.query.type
@@ -23,7 +22,7 @@ router.get('/', async (req: Request, res: Response) => {
   }
 });
 
-// 모든 영상 조회
+// 모든 영상 조회 요청
 router.get('/videos', async (req: Request, res: Response) => {
   const videoService = new VideoService();
 
@@ -38,7 +37,7 @@ router.get('/videos', async (req: Request, res: Response) => {
   }
 });
 
-//영상 생성 요청.
+// 영상 생성 요청
 router.post('/', async (req: Request, res: Response) => {
   const videoService = new VideoService();
   console.log('text: ', req.body.text)

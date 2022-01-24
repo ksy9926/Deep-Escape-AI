@@ -1,5 +1,6 @@
 import { Document, Schema, model } from 'mongoose';
 
+// 유저 타입
 export interface User {
   email: string;
   nickname: string;
@@ -7,6 +8,7 @@ export interface User {
   admin: boolean;
 }
 
+// 유저 스키마
 const schema = new Schema({
   email: {type: String, required: true, unique: true, index: true},
   nickname: {type: String, required: true},

@@ -7,6 +7,7 @@ import videoRouter from './routes/videoRouter';
 import userRouter from './routes/userRouter';
 import themeRouter from './routes/themeRouter';
 
+// 메인서버 클래스
 export class MainServer {
 	private app: any;
 
@@ -16,12 +17,14 @@ export class MainServer {
 	}
 
 	async start(): Promise<void> {
+    // 몽고디비 연결
 		const mongoConnector = new MongoConnector();
 		await mongoConnector.connect();
 		
 		this.app.use(express.json());
-		this.app.use(cors()); //cors를 allow한다.
+		this.app.use(cors());
 
+    // 라우터 연결
 		this.app.use("/video", videoRouter);
 		this.app.use("/user", userRouter);
 		this.app.use("/theme", themeRouter);
@@ -29,6 +32,7 @@ export class MainServer {
       res.send('Hello World');
     });
     
+    // 서버 시작
     this.app.listen(8080, () => {
 			console.log('Server Opened.');
 		});

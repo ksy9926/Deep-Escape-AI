@@ -1,6 +1,7 @@
 import axios from "axios";
 import { API } from "constants/constants";
 
+// 유저 정보 받아오기 API
 export const getUserinfo = async () => {
   const accessToken = sessionStorage.getItem('accessToken');
   const checkAccessToken = accessToken !== null ? accessToken : '';
@@ -14,7 +15,7 @@ export const getUserinfo = async () => {
   return res.data;
 }
 
-//로그인 요청.
+// 로그인 API
 export const login = async ({email, password}:{email: string, password: string}) => {
   const res = await axios.post(API + '/user/login', {
     email: email, password: password
@@ -23,7 +24,6 @@ export const login = async ({email, password}:{email: string, password: string})
   if(res.data) {
     let token: string = res.data['token'];
 
-    //얻어온 토큰을 세션 스토리지에 보관.
     sessionStorage.setItem("accessToken", token);
   }
 
@@ -32,7 +32,7 @@ export const login = async ({email, password}:{email: string, password: string})
   return res.data
 }
 
-// 등록 api
+// 회원가입 API
 export const register = async (email: string, nickname: string, password: string, admin: boolean) => {
   const res = await axios.post(API + '/user/register', {
     email: email,

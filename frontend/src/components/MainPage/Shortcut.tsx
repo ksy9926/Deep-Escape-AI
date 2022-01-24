@@ -1,3 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Fade, Zoom } from 'react-awesome-reveal';
+import { RootState } from 'redux/reducers';
+import { message } from 'antd';
 import {
   ShortcutWrap,
   ShortcutTitle,
@@ -8,16 +13,12 @@ import {
   FlexItemDiv,
   LeftMargin,
 } from 'styles/mainStyle';
-import { Fade, Zoom } from 'react-awesome-reveal';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from 'redux/reducers';
-import { message } from 'antd';
 
 const Shortcut = () => {
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user);
 
+  // 바로가기 버튼 핸들러
   const shortcutHandler = (path: string) => {
     if (path === '/admin' && !user.admin) {
       message.warn({
@@ -36,6 +37,7 @@ const Shortcut = () => {
   return (
     <ShortcutWrap>
       <FlexDiv>
+        {/* Shortcut Info : 테마 Section UI */}
         <FlexItemDiv>
           <LeftMargin>
             <Fade direction="down">
@@ -48,6 +50,7 @@ const Shortcut = () => {
             <ShortcutImg src="escape" />
           </Zoom>
         </FlexItemDiv>
+        {/* Shortcut Info : 관리 Section UI */}
         <FlexItemDiv>
           <LeftMargin>
             <Fade direction="down">

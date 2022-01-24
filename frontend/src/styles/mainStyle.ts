@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Zoom } from 'react-awesome-reveal';
 
+// 공통
 export const MainWrap = styled.main`
   width: 100%;
 `;
@@ -15,6 +16,15 @@ export const MainBanner = styled.section`
 export const MainVideo = styled.video`
   width: 100%;
 `
+
+export const FlexDiv = styled.div`
+  display: flex;
+`
+export const FlexItemDiv = styled.div`
+  flex: 1;
+`
+
+// Banner 컴포넌트 스타일
 export const BannerTextDiv = styled.div`
   position: absolute; 
   bottom: 25%;
@@ -26,6 +36,7 @@ export const BannerText = styled.span`
   font-weight: bold;
 `
 
+// Introduction 컴포넌트 스타일
 export const IntroductionWrap = styled.div`
   max-width: 1130px;
   margin: 50px auto 100px;
@@ -65,13 +76,6 @@ export const VideoZoom = styled(Zoom)`
   color: #fff;
 `
 
-export const FlexDiv = styled.div`
-  display: flex;
-`
-export const FlexItemDiv = styled.div`
-  flex: 1;
-`
-
 export const FlexMarginDiv = styled(FlexItemDiv)`
   margin-left: 120px;
 `
@@ -106,6 +110,7 @@ export const ReservationLink = styled.a`
   }
 `
 
+// Awards 컴포넌트 스타일
 export const AwardsWrap = styled.div`
   background: #89cdb6;
 `
@@ -143,6 +148,7 @@ export const AwardsTextWrap = styled.div`
   text-align: center;
 `
 
+// Shortcut 컴포넌트 스타일
 export const ShortcutWrap = styled.div`
   max-width: 1130px;
   margin: 50px auto 100px;

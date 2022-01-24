@@ -16,6 +16,7 @@ const LoginPage = () => {
   const [admin, setAdmin] = useState(false);
   const user = useSelector((state: RootState) => state.user);
 
+  // 로그인 성공시 메세지 출력
   useEffect(() => {
     if (user.nickname) {
       message.success({
@@ -29,10 +30,12 @@ const LoginPage = () => {
     }
   }, [user]);
 
+  // 로그인 핸들러
   const loginHandler = (v: any) => {
     dispatch(setUserinfoAsync.request({ email: v.email, password: v.password }));
   };
 
+  // 회원가입 핸들러
   const registerHandler = async (v: any) => {
     const res = await register(v.email, v.nickname, v.password, admin);
     if (res === 'success') {
@@ -47,6 +50,7 @@ const LoginPage = () => {
     }
   };
 
+  // 로그인 또는 회원가입 실패 핸들러
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
@@ -64,6 +68,7 @@ const LoginPage = () => {
           admin: false,
         }}
       >
+        {/* Login Info : 관리자 여부 입력 UI */}
         {!loginState && (
           <Form.Item
             label="관리자 여부"
@@ -77,6 +82,7 @@ const LoginPage = () => {
             </Select>
           </Form.Item>
         )}
+        {/* Login Info : 이메일 입력 UI */}
         <Form.Item
           label="이메일"
           name="email"
@@ -84,6 +90,7 @@ const LoginPage = () => {
         >
           <Input />
         </Form.Item>
+        {/* Login Info : 닉네임 입력 UI */}
         {!loginState && (
           <Form.Item
             label="닉네임"
@@ -93,6 +100,7 @@ const LoginPage = () => {
             <Input />
           </Form.Item>
         )}
+        {/* Login Info : 비밀번호 입력 UI */}
         <Form.Item
           label="비밀번호"
           name="password"
@@ -100,6 +108,7 @@ const LoginPage = () => {
         >
           <Input.Password />
         </Form.Item>
+        {/* Login Info : 비밀번호 확인 입력 UI */}
         {!loginState && (
           <Form.Item
             label="비밀번호 확인"
@@ -126,6 +135,7 @@ const LoginPage = () => {
             <Input.Password />
           </Form.Item>
         )}
+        {/* Login Info : 로그인 / 회원가입 버튼 UI */}
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Space>
             <Button type="primary" htmlType="submit">
