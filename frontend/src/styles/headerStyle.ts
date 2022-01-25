@@ -29,7 +29,7 @@ export const LinkBold = styled.span`
 
   &:hover {
     cursor: pointer;
-    color: #e68;
+    color: #ff3e3e;
     transition: all 0.5s ease;
   }
 `

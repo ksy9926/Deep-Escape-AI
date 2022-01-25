@@ -18,3 +18,9 @@ export const VIDEO_TYPE = {
 // export const API = 'http://ec2-13-209-99-205.ap-northeast-2.compute.amazonaws.com:8080'
 export const API = 'http://localhost:8080';
 export const STUDIO_API='http://localhost:3000/api/odin'
+
+// 어드민 수정 플래그
+export const MODIFY_FLAG = {
+  video: 'video',
+  theme: 'theme'
+}

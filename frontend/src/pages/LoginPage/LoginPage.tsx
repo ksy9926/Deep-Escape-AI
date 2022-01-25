@@ -132,9 +132,7 @@ const LoginPage = () => {
                       if (!value || getFieldValue('password') === value) {
                         return Promise.resolve();
                       }
-                      return Promise.reject(
-                        new Error('The two passwords that you entered do not match!'),
-                      );
+                      return Promise.reject(new Error('passwords are not match!'));
                     },
                   }),
                 ]}

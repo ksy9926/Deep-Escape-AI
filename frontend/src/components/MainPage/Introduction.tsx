@@ -14,8 +14,10 @@ import {
   FlexDiv,
   FlexMarginDiv,
 } from 'styles/mainStyle';
+import { useNavigate } from 'react-router-dom';
 
 const Introduction = () => {
+  const navigate = useNavigate();
   const [introVideo, setIntroVideo] = useState({
     url: '',
   });
@@ -50,11 +52,11 @@ const Introduction = () => {
             <Description>
               영상 AI를 통해 <br />
               방탈출이란 무엇인지, <br />
-              최신 소식은 어떤것이 있는지 알아보세요.
+              최신 소식은 어떤 것이 있는지 알아보세요.
             </Description>
           </Fade>
           <Fade direction="up">
-            <Button>테마정보 보러가기</Button>
+            <Button onClick={() => navigate('/theme')}>테마정보 보러가기</Button>
           </Fade>
         </FlexMarginDiv>
         {/* Introduction Info : 영상 비디오 UI */}

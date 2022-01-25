@@ -82,6 +82,7 @@ export const FlexMarginDiv = styled(FlexItemDiv)`
 
 export const Video = styled.video`
   height: 500px;
+  width: 280px;
 `
 
 export const Button = styled.button`

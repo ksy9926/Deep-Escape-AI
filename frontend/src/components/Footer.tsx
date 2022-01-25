@@ -26,7 +26,9 @@ const Footer = () => {
         {/* Footer Info : 딥브레인AI 정보 UI */}
         <DeepBrainDiv>
           <DeepBrainTitle>DEEPBRAIN AI</DeepBrainTitle>
-          <DeepBrainLink href="https://www.deepbrainai.io/ko/">홈페이지 바로가기</DeepBrainLink>
+          <DeepBrainLink href="https://www.deepbrainai.io/ko/" target="_blank">
+            홈페이지 바로가기
+          </DeepBrainLink>
         </DeepBrainDiv>
       </FooterInnerWrap>
     </FooterWrap>
