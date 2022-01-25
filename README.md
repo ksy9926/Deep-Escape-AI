@@ -2,6 +2,10 @@
 
 딥브레인AI 개인 프로젝트 - 방탈출 AI 소개 서비스
 
+[**웹 사이트 바로가기**](http://ec2-15-164-214-76.ap-northeast-2.compute.amazonaws.com/) 👈
+
+<br />
+
 ## 🗂 목차
 
 - [**프로젝트 소개**](#1)
@@ -26,23 +30,56 @@
 
 ### 🛠 기술 스택
 
-- typescript, react, redux, redux-saga, styled-components, antd
-- node, express, mongoose
+1. Front-end : typescript, react, redux, redux-saga, styled-components, antd
+2. Back-end : node, express, mongoose
+3. Database : mongoDB
+4. External API : 딥브레인AI - AI Studios API
+5. DevOps : Git, Github, AWS EC2, Nginx
 
 <div id='3'></div>
 <br />
 
 ### 💡 주요 기능
 
-- 로그인, 회원가입
-- 서비스 소개
-- 테마 어워즈
-- 영상 제작 및 관리
+- 서비스 소개 페이지
+  1. 방탈출에 대한 AI 안내와 방탈출 정보 등을 통한 서비스 소개
+- 테마 페이지
+  1. 방탈출 어워즈로 선정된 올해의 테마 정보(미완료)
+  2. 방탈출 테마 정보(미완료)
+- 관리 페이지
+  1. 영상 제작 및 관리
+  2. 테마 정보 생성 및 관리(미완료)
+- 로그인 페이지
+  1. 로그인, 회원가입
 
 <div id='4'></div>
 <br />
 
 ### ⭐️ 웹서비스 소개
+
+|            서비스 소개 페이지 UI             |
+| :------------------------------------------: |
+| <img src='./images/intro.gif' alt='intro' /> |
+
+|                      회원가입                      |
+| :------------------------------------------------: |
+| <img src='./images/register.gif' alt='register' /> |
+
+|                    로그인                    |
+| :------------------------------------------: |
+| <img src='./images/login.gif' alt='login' /> |
+
+|               관리자 페이지 UI               |
+| :------------------------------------------: |
+| <img src='./images/admin.gif' alt='admin' /> |
+
+|                      영상 수정                      |
+| :-------------------------------------------------: |
+| <img src='./images/adminUpdate.gif' alt='update' /> |
+
+|                테마 페이지 UI                |
+| :------------------------------------------: |
+| <img src='./images/theme.gif' alt='theme' /> |
 
 <div id='5'></div>
 <br />
@@ -83,6 +120,3 @@ $ yarn start
 
 - [**인트로 게임영상**](https://pixabay.com/ko/videos/%EA%B2%8C%EC%9E%84-%EC%9A%B0%EB%A6%AC-%EA%B0%80%EC%9A%B4%EB%8D%B0-%EC%9A%B0%EC%A3%BC%EC%84%A0-72488/)
 - [**이미지 출처**](https://unsplash.com/)
-- [**참고 UI1**](https://yanolja.in/)
-- [**참고 UI2**](https://www.goodchoice.kr/)
-- [**참고 UI3**](https://ceo.baemin.com/)
