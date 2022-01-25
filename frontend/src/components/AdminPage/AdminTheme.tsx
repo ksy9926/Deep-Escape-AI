@@ -3,9 +3,8 @@ import {
   AdminSectionWrap,
   AdminSectionTitle,
   AdminTypeButton,
-  AdminThemeInput,
+  OnDevelop,
 } from 'styles/adminStyle';
-import { message } from 'antd';
 
 const AdminTheme = () => {
   return (
@@ -18,15 +17,15 @@ const AdminTheme = () => {
       </AdminSectionWrap>
       <AdminSectionWrap>
         <AdminSectionTitle>테마 정보</AdminSectionTitle>
-        테마명: <AdminThemeInput />
-        매장명: <AdminThemeInput />
-        지역 <AdminThemeInput />
+        <OnDevelop>준비중입니다.</OnDevelop>
       </AdminSectionWrap>
       <AdminSectionWrap>
         <AdminSectionTitle>이미지</AdminSectionTitle>
+        <OnDevelop>준비중입니다.</OnDevelop>
       </AdminSectionWrap>
       <AdminSectionWrap>
         <AdminSectionTitle>수정</AdminSectionTitle>
+        <OnDevelop>준비중입니다.</OnDevelop>
       </AdminSectionWrap>
     </AdminVideoWrap>
   );

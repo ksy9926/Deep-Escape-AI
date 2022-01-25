@@ -11,38 +11,38 @@ const asyncify = require('express-asyncify');
 const router = asyncify(express_1.default.Router());
 // 유저 정보 요청
 router.use('/profile', authorization_1.verifyToken);
-router.get('/profile', async (request, response) => {
+router.get('/profile', async (req, res) => {
     const userService = new userService_1.UserService();
     try {
-        let email = response.locals['email'];
+        let email = res.locals['email'];
         const user = await userService.read(email);
         // 유저 없는 경우
         if (!user) {
-            response.status(400).send('user not exist');
+            res.status(400).send('user not exist');
             return;
         }
-        response.status(200).send({ nickname: user.nickname, admin: user.admin });
+        res.status(200).send({ nickname: user.nickname, admin: user.admin });
     }
     catch (err) {
-        response.status(400).send('user error');
+        res.status(400).send('user error');
     }
 });
 // 유저 로그인 요청
-router.post('/login', async (request, response) => {
+router.post('/login', async (req, res) => {
     const userService = new userService_1.UserService();
     try {
-        let email = request.body.email;
-        let password = request.body.password;
+        let email = req.body.email;
+        let password = req.body.password;
         const user = await userService.read(email);
         if (!user) {
             // 이메일 주소 없음
-            response.status(400).send('email not exist');
+            res.status(400).send('email not exist');
             return;
         }
         const result = await (0, bcryptjs_1.compare)(password, user.password);
         if (!result) {
             // 비밀번호 불일치
-            response.status(400).send('password incorrect');
+            res.status(400).send('password incorrect');
             return;
         }
         // 유저 정보로 토큰 생성
@@ -53,33 +53,33 @@ router.post('/login', async (request, response) => {
             expiresIn: '600m'
         });
         console.log('user 있음');
-        response.json({
+        res.json({
             nickname: user.nickname,
             token: token,
             admin: user.admin
         });
     }
     catch (err) {
-        response.status(400).send('login error');
+        res.status(400).send('login error');
     }
 });
 // 유저 회원가입 요청
-router.post('/register', async (request, response) => {
+router.post('/register', async (req, res) => {
     const userService = new userService_1.UserService();
-    let user = request.body;
+    let user = req.body;
     // 유저 암호 해쉬화
     user.password = await (0, bcryptjs_1.hash)(user.password, 5);
     try {
         const data = await userService.create(user);
         if (data) {
-            response.status(201).send('success');
+            res.status(201).send('success');
         }
         else {
-            response.status(400).send('register error');
+            res.status(400).send('register error');
         }
     }
     catch (err) {
-        response.status(400).send('register error');
+        res.status(400).send('register error');
     }
 });
 module.exports = router;

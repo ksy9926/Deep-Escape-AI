@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'redux/reducers';
 import { VIDEO_TYPE } from 'constants/constants';
 import { getVideos } from 'apis/video';
+import { message } from 'antd';
 import {
   AdminVideoWrap,
   AdminSectionWrap,
@@ -20,7 +21,6 @@ import {
   ModifyTextArea,
   CompleteButton,
 } from 'styles/adminStyle';
-import { message } from 'antd';
 
 const AdminVideo = () => {
   const dispatch = useDispatch();
@@ -34,11 +34,13 @@ const AdminVideo = () => {
   const [videoKey, setVideoKey] = useState('');
   const { token } = useSelector((state: RootState) => state.studio);
 
+  // 첫 진입시 영상 정보 불러오기
   useEffect(() => {
     fetchData(VIDEO_TYPE.introduction);
     dispatch(generateClientTokenAsync.request());
   }, []);
 
+  // 영상 합성 후 진행률 추적
   useEffect(() => {
     if (videoKey) {
       let interval = setInterval(async () => {
@@ -48,10 +50,11 @@ const AdminVideo = () => {
           setUrl(res.data.video);
           clearInterval(interval);
         }
-      }, 3000);
+      }, 2000);
     }
   }, [videoKey]);
 
+  // 영상 정보 불러오기 핸들러
   const fetchData = async (type: string) => {
     try {
       const res = await getVideos(type);
@@ -62,11 +65,13 @@ const AdminVideo = () => {
     }
   };
 
+  // 영상 합성 핸들러
   const makeVideoHandler = async () => {
     const res = await makeVideo({ token: token, text: text });
     setVideoKey(res.data.key);
   };
 
+  // 영상 등록 핸들러
   const postVideoHandler = async () => {
     await postVideo(type, url, text, introVideo.videoId);
     await fetchData(type);
@@ -86,6 +91,7 @@ const AdminVideo = () => {
 
   return (
     <AdminVideoWrap>
+      {/* Admin Video Info : 유형 탭 UI */}
       <AdminSectionWrap>
         <AdminSectionTitle>유형</AdminSectionTitle>
         <AdminTypeButton
@@ -109,10 +115,12 @@ const AdminVideo = () => {
           어워즈 영상 AI
         </AdminTypeButton>
       </AdminSectionWrap>
+      {/* Admin Video Info : 영상 비디오 탭 UI */}
       <AdminSectionWrap>
         <AdminSectionTitle>영상</AdminSectionTitle>
         {introVideo.url && <video width="280px" height="500px" src={introVideo.url} controls />}
       </AdminSectionWrap>
+      {/* Admin Video Info : 영상 정보 탭 UI */}
       <AdminSectionWrap>
         <AdminSectionTitle>내용</AdminSectionTitle>
         <AdminVideoText>{introVideo.text}</AdminVideoText>
@@ -120,6 +128,7 @@ const AdminVideo = () => {
           {isModify ? '취소' : '수정하기'}
         </AdminModifyButton>
       </AdminSectionWrap>
+      {/* Admin Video Info : 영상 수정 탭 UI */}
       <AdminSectionWrap>
         <AdminSectionTitle>수정</AdminSectionTitle>
         {isModify && (
@@ -147,9 +156,9 @@ const AdminVideo = () => {
             <CompleteButton bgColor={false} onClick={() => postVideoHandler()}>
               수정 완료하기
             </CompleteButton>
-            <a href={url} style={{ color: '#000' }}>
+            {/* <a href={url} style={{ color: '#000' }}>
               영상 다운로드
-            </a>
+            </a> */}
           </>
         )}
       </AdminSectionWrap>

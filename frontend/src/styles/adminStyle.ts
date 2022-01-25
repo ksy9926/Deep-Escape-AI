@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// 어드민 공통
 export const AdminWrap = styled.div`
   margin: 60px auto 0;
   max-width: 1130px;
@@ -27,6 +28,7 @@ export const AdminSubTitle = styled.div`
   font-weight: 700;
 `
 
+// 관리 섹션
 export const AdminMenuButtonWrap = styled.div`
 `
 
@@ -157,3 +159,13 @@ export const AdminThemeInput = styled.input`
 `
 
 export const Div = styled.div``
+
+export const OnDevelop = styled.div`
+  width: 100%;
+  height: 400px;
+  background: #ebebeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+`

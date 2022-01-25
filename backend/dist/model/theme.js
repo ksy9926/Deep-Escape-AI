@@ -28,11 +28,10 @@ const mongoose_auto_increment_1 = __importDefault(require("mongoose-auto-increme
 // 테마 스키마
 const schema = new mongoose_1.Schema({
     themeId: { type: Number, unique: true, index: true },
-    award: { type: Boolean, required: true },
-    rank: { type: Number },
-    img: { type: String, required: true },
+    award: { type: String, required: true },
     title: { type: String, required: true },
-    store: { type: String, required: true }
+    store: { type: String, required: true },
+    img: { type: String, required: true },
 });
 // 테마 인덱스 auto increment
 mongoose_auto_increment_1.default.initialize(mongoose_1.default.connection);
@@ -42,5 +41,5 @@ schema.plugin(mongoose_auto_increment_1.default.plugin, {
     startAt: 1,
     increment: 1,
 });
-exports.ThemeModel = (0, mongoose_1.model)('User', schema);
+exports.ThemeModel = (0, mongoose_1.model)('Theme', schema);
 //# sourceMappingURL=theme.js.map
