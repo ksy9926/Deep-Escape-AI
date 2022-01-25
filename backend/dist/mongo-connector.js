@@ -5,9 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MongoConnector = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
+// 몽고 커넥터 클래스
 class MongoConnector {
     constructor() {
     }
+    // 몽고디비 연결
     connect() {
         return new Promise((resolve, reject) => {
             mongoose_1.default.connection.once('open', function () {
@@ -26,20 +28,13 @@ class MongoConnector {
                 });
                 return resolve(null);
             });
-            // all executed methods log output to console
             mongoose_1.default.set('debug', true);
-            // disable colors in debug mode
             mongoose_1.default.set('debug', { color: false });
-            // get mongodb-shell friendly output (ISODate)
             mongoose_1.default.set('debug', { shell: true });
-            //db setting
+            // 몽고디비 세팅 및 연결
             this.mongoConnection = mongoose_1.default.connection;
             mongoose_1.default.connect(process.env.MONGODB_URL, {
-                keepAlive: true,
-                // useNewUrlParser: true, 
-                // useUnifiedTopology: true, 
-                // autoReconnect: false,
-                // useCreateIndex: true 
+                keepAlive: true
             }).then(() => {
                 console.log('MongoDB Connected.');
                 resolve(null);

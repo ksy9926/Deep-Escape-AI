@@ -22,9 +22,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const videoService_1 = require("../services/videoService");
 const asyncify = require('express-asyncify');
-//라우터에서 비동기 함수를 사용할 수 있게 한다.
 const router = asyncify(express_1.default.Router());
-// 영상 조회
+// 영상 조회 요청
 router.get('/', async (req, res) => {
     const videoService = new videoService_1.VideoService();
     const type = req.query.type;
@@ -40,7 +39,7 @@ router.get('/', async (req, res) => {
         res.status(400).send('write error');
     }
 });
-// 모든 영상 조회
+// 모든 영상 조회 요청
 router.get('/videos', async (req, res) => {
     const videoService = new videoService_1.VideoService();
     try {
@@ -54,7 +53,7 @@ router.get('/videos', async (req, res) => {
         res.status(400).send('write error');
     }
 });
-//영상 생성 요청.
+// 영상 생성 요청
 router.post('/', async (req, res) => {
     const videoService = new videoService_1.VideoService();
     console.log('text: ', req.body.text);

@@ -15,14 +15,14 @@ const verifyToken = (request, response, next) => {
         }
         const token = request.headers['x-access-token'].toString();
         const secret_key = process.env.SECRET_KEY || 'secret_key';
-        // token does not exist
+        // 토큰 없는 경우
         if (!token) {
             return response.status(403).json({
                 success: false,
                 message: 'not logged in'
             });
         }
-        //토큰을 검증한다.
+        // 토큰 검증
         const decoded = jsonwebtoken_1.default.verify(token, secret_key);
         if (decoded) {
             response.locals = {

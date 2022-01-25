@@ -55,7 +55,7 @@ const AdminPage = () => {
 
   return (
     <AdminWrap>
-      <div>인트로 영상</div>
+      <h2>인트로 영상</h2>
       <div style={{ display: 'flex' }}>
         <div style={{ flex: 1 }}>
           {introVideo.url && <video height="500px" src={introVideo.url} controls />}
@@ -108,6 +108,7 @@ const AdminPage = () => {
           )}
         </div>
       </div>
+      <h2>어워즈 영상</h2>
     </AdminWrap>
   );
 };

@@ -25,6 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThemeModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const mongoose_auto_increment_1 = __importDefault(require("mongoose-auto-increment"));
+// 테마 스키마
 const schema = new mongoose_1.Schema({
     themeId: { type: Number, unique: true, index: true },
     award: { type: Boolean, required: true },
@@ -33,12 +34,13 @@ const schema = new mongoose_1.Schema({
     title: { type: String, required: true },
     store: { type: String, required: true }
 });
+// 테마 인덱스 auto increment
 mongoose_auto_increment_1.default.initialize(mongoose_1.default.connection);
 schema.plugin(mongoose_auto_increment_1.default.plugin, {
     model: 'Theme',
     field: 'themeId',
     startAt: 1,
-    increment: 1, //증가.
+    increment: 1,
 });
 exports.ThemeModel = (0, mongoose_1.model)('User', schema);
 //# sourceMappingURL=theme.js.map

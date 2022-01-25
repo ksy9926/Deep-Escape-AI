@@ -25,6 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.VideoModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const mongoose_auto_increment_1 = __importDefault(require("mongoose-auto-increment"));
+// 비디오 스키마
 const schema = new mongoose_1.Schema({
     videoId: { type: Number, unique: true, index: true },
     type: { type: String, required: true },
@@ -32,12 +33,13 @@ const schema = new mongoose_1.Schema({
     text: { type: String, required: true },
     selected: { type: Boolean, required: true },
 });
+// 비디오 인덱스 auto increment
 mongoose_auto_increment_1.default.initialize(mongoose_1.default.connection);
 schema.plugin(mongoose_auto_increment_1.default.plugin, {
     model: 'Video',
     field: 'videoId',
     startAt: 1,
-    increment: 1, //증가.
+    increment: 1,
 });
 exports.VideoModel = (0, mongoose_1.model)('Video', schema);
 //# sourceMappingURL=video.js.map
