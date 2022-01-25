@@ -15,7 +15,7 @@ export const VIDEO_TYPE = {
 }
 
 // API 주소 목록
-// export const API = 'http://ec2-13-209-99-205.ap-northeast-2.compute.amazonaws.com:8080'
+// export const API = 'http://ec2-3-36-85-61.ap-northeast-2.compute.amazonaws.com:8080'
 export const API = 'http://localhost:8080';
 export const STUDIO_API='http://localhost:3000/api/odin'
 
