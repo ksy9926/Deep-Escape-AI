@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
             expiresIn: '600m'
         });
         console.log('user 있음');
-        res.json({
+        res.status(200).send({
             nickname: user.nickname,
             token: token,
             admin: user.admin
